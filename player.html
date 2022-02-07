@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="player.css">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+    </head>
+    <body>
+        <div class="radio-background-image"></div>
+        <div class="radio-player">
+            <audio src="https://relay0.r-a-d.io/main.mp3" class="visually hidden" id="stream"> </audio>
+            <div class="player-controls blur">
+                <button name="play-pause" class="button play-pause-button" aria-label="Play/pause">
+                    <i class="fas fa-play" aria-hidden></i>
+                </button>
+
+                <div class="volume-and-title">
+                    <div class="currently-playing" aria-label="Currently playing">
+                        <span class="currently-playing-label">Where are you?</span>
+                        <span class="currently-playing-title">Listen to something at least</span>
+                    </div>
+
+                    <div class="volume-controls">
+                        <button name="mute" class="button mute-button" aria-label="Mute/unmute">
+                            <i class="fas fa-volume-down" aria-hidden></i>
+                        </button>
+
+                        <input type="range" name="volume" class="volume" min="0" max="1" step="0.05" value="0.2" aria-label="Volume">
+                    </div>
+                </div>
+                <div class="img-container">
+                    <img src="images/test.gif" alt="music-cover" id="cover"/>
+                </div>
+            </div>
+        </div>
+        <script src="player.js"></script>
+
+        
+    </body>
+</html>
