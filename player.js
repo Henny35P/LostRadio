@@ -1,4 +1,5 @@
 const audio = document.querySelector("#stream");
+const radio = document.querySelector(".source");
 const playPauseButton = document.querySelector('[name="play-pause"]');
 const playPauseButtonIcon = playPauseButton.querySelector("i.fas");
 const volumeControl = document.querySelector('[name="volume"]');
@@ -10,6 +11,9 @@ const image = document.querySelector(".img-container");
 let isPlaying = false;
 let fetchInterval = null;
 let currentVolume = 0.2;
+const rad_io = "https://relay0.r-a-d.io/main.mp3";         //R/a/d.io
+const doujinStyle = "https://streams.radio.co/s5ff57669c/listen"; //Doujin Style
+let currentSource = rad_io;
 
 audio.volume = currentVolume;
 
@@ -17,10 +21,10 @@ audio.volume = currentVolume;
  * Fetches the currently playing
  * @returns {Promise<any>}
  */
-const fetchCurrentlyPlaying = () =>
-      fetch("...")
-      .then((response) => response.json())
-      .then((data) => (currentlyPlaying.innerText = data.currentSong));
+// const fetchCurrentlyPlaying = () =>
+//   fetch("...")
+//     .then((response) => response.json())
+//     .then((data) => (currentlyPlaying.innerText = data.currentSong));
 /**
  * Adjusts the icon of the "mute" button based on the given volume.
  * @param volume
@@ -46,7 +50,35 @@ const adjustVolumeIcon = (volume) => {
   if (volume === 0) {
     volumeButtonIcon.classList.add("fa-volume-mute");
   }
+
 };
+
+function stopAudio(audio) {
+  audio.pause();
+  audio.currentTime = 0;
+}
+
+function cycleSource() {
+  stopAudio(audio);
+  currentSource = audio.getAttribute('src');
+  audio.setAttribute('src', "");
+  if (currentSource === rad_io) {
+    audio.setAttribute('src', doujinStyle);
+    audio.load();
+    audio.play();
+    let currentSource = doujinStyle;
+
+  }
+  else {
+    audio.setAttribute('src', rad_io);
+    audio.load();
+    audio.play();
+    let currentSource = rad_io;
+  }
+};
+
+radio.addEventListener("click", cycleSource);
+
 volumeControl.addEventListener("input", () => {
   const volume = parseFloat(volumeControl.value);
 
@@ -75,7 +107,7 @@ playPauseButton.addEventListener("click", () => {
     playPauseButtonIcon.classList.remove("fa-pause");
     playPauseButtonIcon.classList.add("fa-play");
 
-    clearInterval(fetchInterval);
+    // clearInterval(fetchInterval);
     currentlyPlaying.innerText = "Listen to Some Radio Station";
   } else {
     audio.play();
@@ -84,8 +116,8 @@ playPauseButton.addEventListener("click", () => {
     playPauseButtonIcon.classList.remove("fa-play");
     playPauseButtonIcon.classList.add("fa-pause");
 
-    fetchCurrentlyPlaying();
-    fetchInterval = setInterval(fetchCurrentlyPlaying, 3000);
+    // fetchCurrentlyPlaying();
+    // fetchInterval = setInterval(fetchCurrentlyPlaying, 3000);
   }
 
   isPlaying = !isPlaying;

@@ -15,7 +15,10 @@
     <body>
         <div class="radio-background-image"></div>
         <div class="radio-player">
-            <audio src="https://relay0.r-a-d.io/main.mp3" class="visually hidden" id="stream"> </audio>
+            <audio src="https://relay0.r-a-d.io/main.mp3" class="visually hidden" id="stream">
+            </audio>
+
+
             <div class="player-controls blur">
                 <button name="play-pause" class="button play-pause-button" aria-label="Play/pause">
                     <i class="fas fa-play" aria-hidden></i>
@@ -34,6 +37,12 @@
 
                         <input type="range" name="volume" class="volume" min="0" max="1" step="0.05" value="0.2" aria-label="Volume">
                     </div>
+                    <div>
+                        <button name="changeSource" class="button source">
+                            <i class="fas fa-broadcast-tower"></i>
+                        </button>
+                    </div>
+                    
                 </div>
                 <div class="img-container">
                     <img src="images/test.gif" alt="music-cover" id="cover"/>

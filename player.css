@@ -1,5 +1,7 @@
-body {
-  font-family: Terminus;
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap');
+
+html, body {
+  font-family: IBM Plex Mono, monospace;
   text-shadow: 2px 2px 4px #000000;
   color: rgba(255, 255, 255, 0.8);
 }
@@ -106,6 +108,13 @@ body {
   font-size: 22px;
   font-weight: 600;
 }
+.source {
+  margin-top:  1em;
+  height: 3em;
+  width:  16em;
+  border-radius:  10%;
+
+   }
 .volume {
   -webkit-appearance: none;
   appearance: none;
