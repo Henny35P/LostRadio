@@ -13,7 +13,7 @@ let fetchInterval = null;
 let currentVolume = 0.2;
 const rad_io = "https://relay0.r-a-d.io/main.mp3";         //R/a/d.io
 const doujinStyle = "https://streams.radio.co/s5ff57669c/listen"; //Doujin Style
-let currentSource = rad_io;
+const gensokyoRadio = "https://stream.gensokyoradio.net/3"; // gensokyoradio
 
 audio.volume = currentVolume;
 
@@ -58,24 +58,39 @@ function stopAudio(audio) {
   audio.currentTime = 0;
 }
 
+
 function cycleSource() {
+  current = document.querySelector('[name="current"]');
   stopAudio(audio);
-  currentSource = audio.getAttribute('src');
-  audio.setAttribute('src', "");
+  currentSource = audio.currentSrc;
+  audio.src = '';
   if (currentSource === rad_io) {
-    audio.setAttribute('src', doujinStyle);
     audio.load();
     audio.play();
-    let currentSource = doujinStyle;
+    audio.src = doujinStyle;
+    var radio = "Doujin Style"
 
   }
-  else {
-    audio.setAttribute('src', rad_io);
+  else if (currentSource === doujinStyle) {
+    audio.src = gensokyoRadio;
     audio.load();
     audio.play();
-    let currentSource = rad_io;
+    var radio = "Gensokyo Radio"
   }
+  else {
+    audio.src = rad_io;
+    audio.load();
+    audio.play();
+    var radio = "r/a/d.io"
+
+
+  }
+
+  current.innerHTML = radio + " \n" + audio.src;
+
 };
+
+
 
 radio.addEventListener("click", cycleSource);
 

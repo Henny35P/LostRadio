@@ -6,6 +6,64 @@ html, body {
   color: rgba(255, 255, 255, 0.8);
 }
 
+html::before
+{
+	content: "";
+	display: block;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: calc(100% + 32px);
+	height: calc(100% + 32px);
+	background-image: url("../images/scanlines.png");
+	background-position: 0 0;
+	background-repeat: repeat;
+	z-index: 10000000;
+	animation: ScanlineAnimationLeft 2s linear infinite;
+	pointer-events: none;
+	opacity: 0.9;
+}
+
+html::after
+{
+	content: "";
+	display: block;
+	position: fixed;
+	left: -32px;
+	top: 0;
+	width: calc(100% + 32px);
+	height: calc(100% + 32px);
+	background-image: url("../images/scanlines.png");
+	background-position: 0 0;
+	background-repeat: repeat;
+	z-index: 10000000;
+	animation: ScanlineAnimationRight 0.4s linear infinite;
+	pointer-events: none;
+	opacity: 0.9;
+}
+
+@keyframes ScanlineAnimationLeft
+{
+	0% {
+		transform: translateX(0px) translateY(0px);
+	}
+	100% {
+		transform: translateX(-32px) translateY(-32px);
+	}
+}
+
+@keyframes ScanlineAnimationRight
+{
+	0% {
+		transform: translateX(0px) translateY(0px);
+	}
+	100% {
+		transform: translateX(32px) translateY(-32px);
+	}
+}
+
+
+
 .radio-background-image {
   background-image: url("images/hinamizawa.png");
   background-position: center;
@@ -121,6 +179,9 @@ html, body {
   border: 1px solid #000;
   border-radius: 50px;
   overflow: hidden; /* This will help with styling the thumb */
+}
+#currentRadio {
+  font-size: 8px ;
 }
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
